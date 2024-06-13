@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<users>
+	<user username="lisi" password="456" verifyCode="abcd"/>
+	<user username="selfknow" password="456"/>
+	<user username="wangwu" password="456"/>
+</users>
