@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: selfknow
@@ -12,10 +13,11 @@
 </head>
 <body>
     <h1>regist</h1>
+    <p style="color: red; font-weight: 900">${msg}</p>
 
     <form action="${pageContext.request.contextPath}/RegistServlet" method="post">
-        username: <input type="text" name="username "/>
-        password: <input type="password" name="password"/>
+        username: <input type="text" name="username" value="${user.username}"/> <br>
+        password: <input type="password" name="password" value="${user.password}"/> <br>
         <input type="submit" value="register"/>
     </form>
 </body>

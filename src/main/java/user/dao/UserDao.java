@@ -62,6 +62,7 @@ public class UserDao {
                             new FileOutputStream(path),"UTF-8"),format);
             xmlWriter.write(doc);
             xmlWriter.close();
+            System.out.println(user.getUsername() + " 注册成功");
         } catch (DocumentException | IOException e) {
             throw new RuntimeException(e);
         }
