@@ -11,6 +11,13 @@
     <title>login</title>
 </head>
 <body>
-    <h1>login</h1>
+<h1>login</h1>
+<p style="color: red; font-weight: 900">${msg}</p>
+
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+    username: <input type="text" name="username" value="${user.username}"/> <br>
+    password: <input type="password" name="password" value="${user.password}"/> <br>
+    <input type="submit" value="login"/>
+</form>
 </body>
 </html>

@@ -19,4 +19,19 @@ public class UserService {
 
     }
 
+    public User login(User form) throws UserException {
+        User _user = userDao.findByUsername(form.getUsername());
+        if(_user == null) {
+            // 抛出异常
+            String msg = "username: " + form.getUsername() + " is not exist , please try again.";
+            throw new UserException(msg);
+        }
+
+        if(!_user.getUsername().equals(form.getPassword())) {
+            String msg = "username: " + form.getUsername() + "'s password wrongly , please try again.";
+            throw new UserException(msg);
+        }
+        return _user;
+    }
+
 }

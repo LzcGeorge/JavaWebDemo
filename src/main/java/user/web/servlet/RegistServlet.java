@@ -25,7 +25,7 @@ public class RegistServlet extends HttpServlet{
         // 拿到数据
         User form = CommonUtils.toBean(request.getParameterMap(), User.class);
         HttpSession session = request.getSession();
-
+        session.setAttribute("msg",""); // 初始化
         // 验证码
         String verifyCode = (String) request.getSession().getAttribute("verifyCode");
         if(!verifyCode.equalsIgnoreCase(form.getVerifyCode())) {
