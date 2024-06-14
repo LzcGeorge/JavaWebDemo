@@ -10,6 +10,13 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript">
+        function _change() {
+            var ele = document.getElementById("verifyCode");
+            ele.src = "/user/VerifyCodeServlet?xxx=" + new Date().getTime();
+
+        }
+    </script>
 </head>
 <body>
     <h1>regist</h1>
@@ -18,6 +25,9 @@
     <form action="${pageContext.request.contextPath}/RegistServlet" method="post">
         username: <input type="text" name="username" value="${user.username}"/> <br>
         password: <input type="password" name="password" value="${user.password}"/> <br>
+        verifycode: <input type="text" name="verifyCode" value="${user.verifyCode}" size="4">
+                    <img id="verifyCode" src="/user/VerifyCodeServlet"/>
+        <a href="javascript:_change()"/>change it </a><br>
         <input type="submit" value="register"/>
     </form>
 </body>

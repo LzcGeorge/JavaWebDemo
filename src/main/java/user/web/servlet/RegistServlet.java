@@ -23,8 +23,19 @@ public class RegistServlet extends HttpServlet{
         UserService userService = new UserService();
 
         // 拿到数据
-
         User form = CommonUtils.toBean(request.getParameterMap(), User.class);
+        HttpSession session = request.getSession();
+
+        // 验证码
+        String verifyCode = (String) request.getSession().getAttribute("verifyCode");
+        if(!verifyCode.equalsIgnoreCase(form.getVerifyCode())) {
+            session.setAttribute("msg","verifyCode wrongly,try again.");
+            session.setAttribute("user",form);
+
+            response.setHeader("Location","/user/regist.jsp");
+            response.setStatus(302);
+            return;
+        }
 
         try {
             userService.regist(form);
@@ -35,7 +46,6 @@ public class RegistServlet extends HttpServlet{
 //            response.setAttribute("msg",e.getMessage());
             System.out.println(e.getMessage());
 
-            HttpSession session = request.getSession();
 //            request.setAttribute("msg",e.getMessage());
 //            request.setAttribute("user",form);
 //            // 转发
