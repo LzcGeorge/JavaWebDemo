@@ -40,7 +40,7 @@ public class RegistServlet extends HttpServlet{
         try {
             userService.regist(form);
             response.getWriter().println("<h1>注册成功!</h1> <a href = ' " +
-                    request.getContextPath() + "/login.jsp" + "'>点击登陆</a>");
+                    request.getContextPath() + "/index.jsp" + "'>点击登陆</a>");
         } catch (UserException e) {
 //            throw new RuntimeException(e);
 //            response.setAttribute("msg",e.getMessage());

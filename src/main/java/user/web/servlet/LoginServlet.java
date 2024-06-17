@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet{
             session.setAttribute("msg",e.getMessage());
             session.setAttribute("user",form);
 
-            response.setHeader("Location","/user/login.jsp");
+            response.setHeader("Location","/user/index.jsp");
             response.setStatus(302);
         }
     }

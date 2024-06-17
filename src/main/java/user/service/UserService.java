@@ -1,11 +1,11 @@
 package user.service;
 
+import user.dao.DaoFactory;
 import user.dao.UserDao;
 import user.domain.User;
 
 public class UserService {
-    private UserDao userDao = new UserDao();
-
+    private UserDao userDao = DaoFactory.getUserDao();
     public void regist(User user) throws UserException {
         User _user = userDao.findByUsername(user.getUsername());
         if(_user != null) {
@@ -27,8 +27,9 @@ public class UserService {
             throw new UserException(msg);
         }
 
-        if(!_user.getUsername().equals(form.getPassword())) {
+        if(!_user.getPassword().equals(form.getPassword())) {
             String msg = "username: " + form.getUsername() + "'s password wrongly , please try again.";
+
             throw new UserException(msg);
         }
         return _user;
