@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <!-- 默认配置 -->
+    <default-config>
+        <!-- JDBC连接的URL -->
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/qq</property>
+
+        <!-- JDBC驱动类 -->
+        <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+
+        <!-- 数据库用户名 -->
+        <property name="user">selfknow</property>
+
+        <!-- 数据库密码 -->
+        <property name="password">123</property>
+
+        <!-- 初始化连接池中的连接数 -->
+        <property name="initialPoolSize">3</property>
+
+        <!-- 最小连接数 -->
+        <property name="minPoolSize">3</property>
+
+        <!-- 最大连接数 -->
+        <property name="maxPoolSize">15</property>
+
+        <!-- 每次连接池用完连接数 -->
+        <property name="acquireIncrement">3</property>
+
+        <!-- 空闲连接测试周期，单位为秒 -->
+        <property name="idleConnectionTestPeriod">300</property>
+
+        <!-- 最大空闲时间，单位为秒 -->
+        <property name="maxIdleTime">600</property>
+
+        <!-- 连接测试查询 -->
+        <property name="preferredTestQuery">SELECT 1</property>
+
+        <!-- 当连接池中的连接耗尽时，C3P0一次同时获取的连接数 -->
+        <property name="acquireRetryAttempts">3</property>
+
+        <!-- 连接失败时隔多长时间重试，单位为毫秒 -->
+        <property name="acquireRetryDelay">1000</property>
+
+        <!-- 是否在关闭连接时测试连接有效性 -->
+        <property name="testConnectionOnCheckout">true</property>
+
+        <!-- 是否在连接池中的连接空闲时测试连接有效性 -->
+        <property name="testConnectionOnCheckin">true</property>
+
+        <!-- 连接池中连接的最大生存时间，单位为秒 -->
+        <property name="maxConnectionAge">1800</property>
+
+        <!-- 连接关闭时抛出异常，确保所有的连接都能正确关闭 -->
+        <property name="forceUseNamedDriverClass">true</property>
+
+
+    </default-config>
+</c3p0-config>
