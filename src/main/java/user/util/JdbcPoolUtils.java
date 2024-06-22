@@ -18,7 +18,7 @@ public class JdbcPoolUtils {
     private static Connection con = null;
 
     public static Connection getConnection() throws SQLException {
-        if(con == null) dataSource.getConnection();
+        if(con == null) return dataSource.getConnection();
         return con;
     }
 

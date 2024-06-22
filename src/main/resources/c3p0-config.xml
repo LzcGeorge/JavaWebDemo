@@ -50,8 +50,7 @@
         <!-- 连接池中连接的最大生存时间，单位为秒 -->
         <property name="maxConnectionAge">1800</property>
 
-        <!-- 连接关闭时抛出异常，确保所有的连接都能正确关闭 -->
-        <property name="forceUseNamedDriverClass">true</property>
+
 
 
     </default-config>
