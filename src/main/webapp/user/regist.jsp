@@ -13,7 +13,7 @@
     <script type="text/javascript">
         function _change() {
             var ele = document.getElementById("verifyCode");
-            ele.src = "/user/VerifyCodeServlet?xxx=" + new Date().getTime();
+            ele.src = "${pageContext.request.contextPath}/VerifyCodeServlet?xxx=" + new Date().getTime();
 
         }
     </script>
@@ -26,7 +26,7 @@
         username: <input type="text" name="username" value="${user.username}"/> <br>
         password: <input type="password" name="password" value="${user.password}"/> <br>
         verifycode: <input type="text" name="verifyCode" value="${user.verifyCode}" size="4">
-                    <img id="verifyCode" src="/user/VerifyCodeServlet"/>
+                    <img id="verifyCode" src="${pageContext.request.contextPath}/VerifyCodeServlet"/>
         <a href="javascript:_change()"/>change it </a><br>
         <input type="submit" value="register"/>
     </form>

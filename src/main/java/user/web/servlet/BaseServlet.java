@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+/**
+ * 需要传递 method 参数
+ * Servlet 通过反射拿到 method 参数对应的方法，然后执行
+ * 执行结束之后，返回字符串，表示需要重定向或者转发。
+ */
 @WebServlet(name = "BaseServlet", value = "/BaseServlet")
 public class BaseServlet extends HttpServlet {
     @Override
@@ -32,15 +37,22 @@ public class BaseServlet extends HttpServlet {
         try {
             String result = (String) method.invoke(this, req, resp);
 
-            // 返回的字符串表示，重定向或者转发
             if(result == null || result.trim().isEmpty()) {
                 return;
             }
-
+            /**
+             * 返回的字符串表示，重定向或者转发
+             * 转发操作：不改变 Url
+             *        没有冒号，默认转发。
+             *        有冒号，并且操作是：forward
+             *  重定向：改变 URL
+             *        有冒号，并且操作是：redirect
+             */
             if(result.contains(":")) {
                 int index = result.indexOf(":");
                 String op = result.substring(0, index);
                 String path = result.substring(index + 1);
+
                 if(op.equalsIgnoreCase("forward")) {
                     req.getRequestDispatcher(path).forward(req,resp);
                 } else if(op.equalsIgnoreCase("redirect")) {
@@ -58,35 +70,23 @@ public class BaseServlet extends HttpServlet {
         }
     }
 
-/**
- * below is test code
- */
+    /**
+     * method 对应的方法：fun1，fun2，fun3
+     */
+    public String fun1(HttpServletRequest req, HttpServletResponse resp){
+        System.out.println("fun1");
+        return "forward:/user/index.jsp";
+    }
 
-//    public String addUser(HttpServletRequest req, HttpServletResponse resp){
-//        System.out.println("addUser");
-//        return null;
-//    }
-//
-//    public String edit(HttpServletRequest req, HttpServletResponse resp){
-//        System.out.println("edit");
-//        throw new RuntimeException("just test");
-//    }
-//
-//    public String fun1(HttpServletRequest req, HttpServletResponse resp){
-//        System.out.println("fun1");
-//        return "forward:/index.jsp";
-//    }
-//
-//
-//    public String fun2(HttpServletRequest req, HttpServletResponse resp){
-//        System.out.println("fun2");
-//
-//        return "redirect:/index.jsp";
-//    }
-//    public String fun3(HttpServletRequest req, HttpServletResponse resp){
-//        System.out.println("fun3");
-//
-//        return "d:/index.jsp";
-//    }
 
+    public String fun2(HttpServletRequest req, HttpServletResponse resp){
+        System.out.println("fun2");
+
+        return "redirect:/user/index.jsp";
+    }
+    public String fun3(HttpServletRequest req, HttpServletResponse resp){
+        System.out.println("fun3");
+
+        return "d:/user/index.jsp";
+    }
 }

@@ -30,13 +30,13 @@ public class LoginServlet extends HttpServlet{
             userService.login(form);
             // 登陆成功
             session.setAttribute("user",form);
-            response.setHeader("Location","/user/welcome.jsp");
+            response.setHeader("Location",request.getContextPath() + "/user/welcome.jsp");
             response.setStatus(302);
         } catch (UserException e) {
             session.setAttribute("msg",e.getMessage());
             session.setAttribute("user",form);
 
-            response.setHeader("Location","/user/index.jsp");
+            response.setHeader("Location",request.getContextPath() + "/user/index.jsp");
             response.setStatus(302);
         }
     }
