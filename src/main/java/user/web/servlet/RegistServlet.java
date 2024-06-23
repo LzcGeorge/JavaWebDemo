@@ -46,7 +46,6 @@ public class RegistServlet extends HttpServlet{
             request.setAttribute("msg",e.getMessage());
             request.setAttribute("user",form);
             // 转发
-            System.out.println(request.getContextPath());
             request.getRequestDispatcher("/user/regist.jsp").forward(request,response);
 //
         }
