@@ -54,4 +54,12 @@ public class CustomerServlet extends BaseServlet {
         req.setAttribute("msg","删除 " + cname + " 顾客成功！");
         return "/customer/msg.jsp";
     }
+
+    public String search(HttpServletRequest req, HttpServletResponse resp) {
+        Customer form = CommonUtils.toBean(req.getParameterMap(), Customer.class);
+        List<Customer> searchRes = customerService.search(form);
+        System.out.println(searchRes);
+        req.setAttribute("customerList",searchRes);
+        return "/customer/list.jsp";
+    }
 }

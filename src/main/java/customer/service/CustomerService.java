@@ -28,4 +28,8 @@ public class CustomerService {
     public void deleteByCid(String cid) {
         customerDao.deleteByCid(cid);
     }
+
+    public List<Customer> search(Customer form) {
+        return customerDao.search(form);
+    }
 }

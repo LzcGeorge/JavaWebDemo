@@ -19,7 +19,8 @@
   
   <body>
 <h3 align="center">高级搜索</h3>
-<form action="<c:url value='/customer/list.jsp'/>" method="post">
+<form action="${pageContext.request.contextPath}/CustomerServlet" method="post">
+	<input type="hidden" name="method" value="search" />
 <table border="0" width="20%" style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td width="100px">客户名称</td>
@@ -30,7 +31,7 @@
 	<tr>
 		<td>客户性别</td>
 		<td>
-			<select name="gedner">
+			<select name="gender">
 				<option value="">==请选择性别==</option>
 				<option value="男">男</option>
 				<option value="女">女</option>
