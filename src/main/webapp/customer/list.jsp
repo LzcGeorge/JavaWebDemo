@@ -30,30 +30,21 @@
 		<th>描述</th>
 		<th>操作</th>
 	</tr>
+<c:forEach items="${requestScope.customerList}"	var="customer">
 	<tr>
-		<td>张三</td>
-		<td>男</td>
-		<td>2013-05-05</td>
-		<td>13899996666</td>
-		<td>zhangSan@163.com</td>
-		<td>张三是谁？</td>
+		<td>${customer.cname}</td>
+		<td>${customer.gender}</td>
+		<td>${customer.birthday}</td>
+		<td>${customer.cellphone}</td>
+		<td>${customer.email}</td>
+		<td>${customer.description}</td>
 		<td>
-			<a href="<c:url value='/customer/edit.jsp'/>">编辑</a>
-			<a href="<c:url value='/customer/msg.jsp'/>">删除</a>
+			<a href="${pageContext.request.contextPath}/CustomerServlet?method=preEdit&cid=${customer.cid}">编辑</a>
+			<a href="${pageContext.request.contextPath}/CustomerServlet?method=delete&cid=${customer.cid}&cname=${customer.cname}">删除</a>
 		</td>
 	</tr>
-	<tr>
-		<td>张三</td>
-		<td>男</td>
-		<td>2013-05-05</td>
-		<td>13899996666</td>
-		<td>zhangSan@163.com</td>
-		<td>张三是谁？</td>
-		<td>
-			<a href="<c:url value='/customer/edit.jsp'/>">编辑</a>
-			<a href="<c:url value='/customer/msg.jsp'/>">删除</a>
-		</td>
-	</tr>
+</c:forEach>
+
 </table>
   </body>
 </html>

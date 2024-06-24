@@ -20,6 +20,8 @@ import java.lang.reflect.Method;
 public class BaseServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String methodName = req.getParameter("method");
 
         if(methodName == null || methodName.trim().isEmpty()) {

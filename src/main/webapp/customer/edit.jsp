@@ -57,12 +57,15 @@
   
   <body>
 <h3 align="center">编辑客户</h3>
-<form action="<c:url value='/customer/msg.jsp'/>" method="post">
+<form action="${pageContext.request.contextPath}/CustomerServlet" method="post">
+	<input type="hidden" name="method" value="edit">
+	<input type="hidden" name="cid" value="${editCustomer.cid}">
+
 <table border="0" width="20%" style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td width="100px">客户名称</td>
 		<td width="40%">
-			<input type="text" name="cname"/>
+			<input type="text" name="cname" value="${editCustomer.cname}"/>
 		</td>
 		<td align="left">
 			<label id="cnameError" class="error">&nbsp;</label>
@@ -71,9 +74,9 @@
 	<tr>
 		<td>客户性别</td>
 		<td>
-			<input type="radio" name="gender" value="男" id="male"/>
+			<input type="radio" name="gender" value="男" id="male" <c:if test="${editCustomer.gender eq '男'}">checked="checked"</c:if>/>
 			<label for="male">男</label>
-			<input type="radio" name="gender" value="女" id="female"/>
+			<input type="radio" name="gender" value="女" id="female"  <c:if test="${editCustomer.gender eq '女'}">checked="checked"</c:if>/>
 			<label for="female">女</label>
 		</td>
 		<td>
@@ -83,7 +86,7 @@
 	<tr>
 		<td>客户生日</td>
 		<td>
-			<input type="text" name="birthday" id="birthday" readonly="readonly"/>
+			<input type="text" name="birthday" id="birthday" readonly="readonly" value="${editCustomer.birthday}"/>
 		</td>
 		<td>
 			<label id="birthdayError" class="error">&nbsp;</label>
@@ -92,7 +95,7 @@
 	<tr>
 		<td>手机</td>
 		<td>
-			<input type="text" name="cellphone"/>
+			<input type="text" name="cellphone" value="${editCustomer.cellphone}"/>
 		</td>
 		<td>
 			<label id="cellphoneError" class="error">&nbsp;</label>
@@ -101,7 +104,7 @@
 	<tr>
 		<td>邮箱</td>
 		<td>
-			<input type="text" name="email"/>
+			<input type="text" name="email" value="${editCustomer.email}"/>
 		</td>
 		<td>
 			<label id="emailError" class="error">&nbsp;</label>
@@ -110,7 +113,7 @@
 	<tr>
 		<td>描述</td>
 		<td>
-			<textarea rows="5" cols="30" name="description"></textarea>
+			<textarea rows="5" cols="30" name="description">${editCustomer.description}</textarea>
 		</td>
 		<td>
 			<label id="descriptionError" class="error">&nbsp;</label>

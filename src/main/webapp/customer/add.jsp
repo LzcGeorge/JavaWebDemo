@@ -57,7 +57,8 @@
   
   <body>
 <h3 align="center">添加客户</h3>
-<form action="<c:url value='/customer/msg.jsp'/>" method="post">
+<form action="${pageContext.request.contextPath}/CustomerServlet" method="post">
+	<input type="hidden" name="method" value="addCustomer">
 <table border="0" width="20%" style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td width="100px">客户名称</td>
