@@ -32,6 +32,8 @@
     <p>
         <a href="${pageContext.request.contextPath}/customer">Go to Customer</a>
     </p>
-
+    <p>
+        <a href="${pageContext.request.contextPath}/bookstore">Go to Bookstore</a>
+    </p>
 </body>
 </html>

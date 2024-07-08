@@ -21,9 +21,9 @@
   <body>
 <h1>${msg }</h1>
 <ul>
-  <li><a href="<c:url value='/bookstore/index.jsp'/>">��ҳ</a></li>
-  <li><a href="<c:url value='/bookstore/jsps/user/login.jsp'/>">��¼</a></li>
-  <li><a href="<c:url value='/bookstore/jsps/user/regist.jsp'/>">ע��</a></li>
+  <li><a href="<c:url value='/bookstore/index.jsp'/>">主页</a></li>
+  <li><a href="<c:url value='/bookstore/jsps/user/login.jsp'/>">登录</a></li>
+  <li><a href="<c:url value='/bookstore/jsps/user/regist.jsp'/>">注册</a></li>
 </ul>
   </body>
 </html>
