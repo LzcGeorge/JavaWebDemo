@@ -33,13 +33,18 @@
   <body>
 <h1 style="text-align: center;">书店</h1>
 <div style="font-size: 10pt;">
-		您好：张三&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="<c:url value='/bookstore/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="<c:url value='/bookstore/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		<a href="javascript:alert('您已经退出');" target="_parent">退出</a>
-		<br/>
-		<a href="<c:url value='/bookstore/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp;
-		<a href="<c:url value='/bookstore/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+	<c:choose>
+		<c:when test="${empty session_user}">
+			<a href="<c:url value='/bookstore/jsps/user/login.jsp'/>" target="_parent">登录</a> |&nbsp;
+			<a href="<c:url value='/bookstore/jsps/user/regist.jsp'/>" target="_parent">注册</a>
+		</c:when>
+		<c:otherwise>
+			您好：${session_user.username} &nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/bookstore/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/bookstore/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/api/UserServlet?method=userQuit'/>" target="_parent">退出</a>
+		</c:otherwise>
+	</c:choose>
 </div>
   </body>
 </html>
