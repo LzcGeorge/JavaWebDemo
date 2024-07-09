@@ -2,6 +2,7 @@ package bookstore.book.dao;
 
 import bookstore.book.domain.Book;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import user.util.TxQueryRunner;
 
@@ -24,6 +25,15 @@ public class BookDao {
         String sql = "select * from book where cid = ?";
         try {
             return qr.query(sql,new BeanListHandler<Book>(Book.class),cid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Book findByBid(String bid) {
+        String sql = "select * from book where bid = ?";
+        try {
+            return qr.query(sql,new BeanHandler<Book>(Book.class),bid);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

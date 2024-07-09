@@ -27,4 +27,12 @@ public class BookServlet extends BaseServlet {
         req.setAttribute("bookList",bookList);
         return "/bookstore/jsps/book/list.jsp";
     }
+
+    public String loadBookDescription(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String bid = req.getParameter("bid");
+        Book book = bookService.findByBid(bid);
+        req.setAttribute("bookDesc",book);
+        return "/bookstore/jsps/book/desc.jsp";
+    }
+
 }

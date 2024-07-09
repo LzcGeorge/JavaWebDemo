@@ -15,4 +15,8 @@ public class BookService {
     public List<Book> findByCategory(String cid) {
         return bookDao.findByCategory(cid);
     }
+
+    public Book findByBid(String bid) {
+        return bookDao.findByBid(bid);
+    }
 }
