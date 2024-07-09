@@ -15,7 +15,6 @@ public class CategoryDao {
         String sql = "select * from category";
         try {
             List<Category> query = qr.query(sql, new BeanListHandler<Category>(Category.class));
-            System.out.println(query);
             return query;
         } catch (SQLException e) {
             throw new RuntimeException(e);
