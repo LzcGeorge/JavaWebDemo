@@ -23,5 +23,6 @@
   
   <body>
     <h1>欢迎，欢迎！热烈欢迎！</h1>
+    <p style="color: red; font-weight: 900">${msg }</p>
   </body>
 </html>

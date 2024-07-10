@@ -60,7 +60,9 @@
     <li>作者：${bookDesc.author}</li>
     <li>单价：${bookDesc.price}元</li>
   </ul>
-  <form id="form" action="<c:url value='/bookstore/jsps/cart/list.jsp'/>" method="post">
+  <form id="form" action="<c:url value='/api/CartServlet'/>" method="post">
+      <input type="hidden" name="method" value="addCartItem">
+      <input type="hidden" name="bid" value="${bookDesc.bid}">
   	<input type="text" size="3" name="count" value="1"/>
   </form>
   <a href="javascript:document.getElementById('form').submit();"></a>

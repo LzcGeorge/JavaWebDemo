@@ -1,5 +1,6 @@
 package bookstore.user.web.servlet;
 
+import bookstore.cart.domain.Cart;
 import bookstore.user.domain.User;
 import bookstore.user.service.UserException;
 import bookstore.user.service.UserService;
@@ -124,6 +125,8 @@ public class UserServlet extends BaseServlet {
 
             // 因为需要 redirect 所以把用户信息存到 session 中
             req.getSession().setAttribute("session_user",user);
+            // 购物车
+            req.getSession().setAttribute("cart",new Cart());
             return "redirect:/bookstore/jsps/main.jsp";
         } catch (UserException e) {
             req.setAttribute("msg",e.getMessage());
