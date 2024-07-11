@@ -41,7 +41,7 @@
 		<c:otherwise>
 			您好：${session_user.username} &nbsp;&nbsp;|&nbsp;&nbsp;
 			<a href="<c:url value='/bookstore/jsps/cart/list.jsp'/>" target="body">我的购物车</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="<c:url value='/bookstore/jsps/order/list.jsp'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="<c:url value='/api/OrderServlet?method=loadMyOrders&uid=${session_user.uid}'/>" target="body">我的订单</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 			<a href="<c:url value='/api/UserServlet?method=userQuit'/>" target="_parent">退出</a>
 		</c:otherwise>
 	</c:choose>

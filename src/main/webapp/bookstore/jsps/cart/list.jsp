@@ -96,7 +96,7 @@
 			</tr>
 			<tr>
 				<td colspan="7" align="right" style="font-size: 15pt; font-weight: 900">
-					<a id="buy" href="<c:url value='/bookstore/jsps/order/desc.jsp'/>"></a>
+					<a id="buy" href="<c:url value='/api/OrderServlet?method=addOrder'/>"></a>
 				</td>
 			</tr>
 		</table>
