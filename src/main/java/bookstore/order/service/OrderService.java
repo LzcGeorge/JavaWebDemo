@@ -33,4 +33,20 @@ public class OrderService {
     public Order loadOrderByOid(String oid) {
         return orderDao.loadOrderByOid(oid);
     }
+
+    public void confirmOrder(String oid) throws OrderException {
+        int state = orderDao.findStateByOid(oid);
+        if(state != 3) {
+            throw new OrderException("确认收货失败！");
+        }
+        orderDao.updateStateByOid(oid,4);
+    }
+
+    public void payOrder(String oid) throws OrderException {
+        int state = orderDao.findStateByOid(oid);
+        if(state != 1) {
+            throw new OrderException("付款失败！");
+        }
+        orderDao.updateStateByOid(oid,2);
+    }
 }

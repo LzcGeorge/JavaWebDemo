@@ -4,6 +4,7 @@ import bookstore.cart.domain.Cart;
 import bookstore.cart.domain.CartItem;
 import bookstore.order.domain.Order;
 import bookstore.order.domain.OrderItem;
+import bookstore.order.service.OrderException;
 import bookstore.order.service.OrderService;
 import bookstore.user.domain.User;
 import cn.itcast.commons.CommonUtils;
@@ -67,5 +68,30 @@ public class OrderServlet extends BaseServlet {
         Order order = orderService.loadOrderByOid(oid);
         req.setAttribute("order",order);
         return "/bookstore/jsps/order/desc.jsp";
+    }
+
+    public String confirmOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String oid = req.getParameter("oid");
+
+        try {
+            orderService.confirmOrder(oid);
+        } catch (OrderException e) {
+            req.setAttribute("msg",e.getMessage());
+            return "/bookstore/jsps/msg.jsp";
+        }
+        req.setAttribute("msg","订单确认收货成功！");
+        return "/bookstore/jsps/msg.jsp";
+    }
+
+    public String payOrder(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String oid = req.getParameter("oid");
+        try {
+            orderService.payOrder(oid);
+        } catch (OrderException e) {
+            req.setAttribute("msg","订单付款失败！！！");
+            return "/bookstore/jsps/msg.jsp";
+        }
+        req.setAttribute("msg","订单付款成功！");
+        return "/bookstore/jsps/msg.jsp";
     }
 }

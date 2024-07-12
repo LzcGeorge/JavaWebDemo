@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import user.util.TxQueryRunner;
 
 import java.sql.SQLException;
@@ -50,7 +51,7 @@ public class OrderDao {
     }
 
     public List<Order> loadOrdersByUid(String uid) {
-        String sql = "select * from orders where uid = ?";
+        String sql = "select * from orders where uid = ? order by state,ordertime DESC";
         try {
             List<Order> orderList = qr.query(sql, new BeanListHandler<>(Order.class), uid);
 
@@ -91,6 +92,24 @@ public class OrderDao {
             loadOrderItem(order);
 
             return order;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int findStateByOid(String oid) {
+        String sql = "select state from orders where oid = ?";
+        try {
+            return (int) qr.query(sql, new ScalarHandler<>(), oid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateStateByOid(String oid,int state) {
+        String sql = "update orders set state = ? where oid = ?";
+        try {
+            qr.update(sql,state,oid);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
