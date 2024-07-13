@@ -37,7 +37,7 @@ public class OrderService {
     public void confirmOrder(String oid) throws OrderException {
         int state = orderDao.findStateByOid(oid);
         if(state != 3) {
-            throw new OrderException("确认收货失败！");
+            throw new OrderException("确认收货失败！当前状态为 " + state);
         }
         orderDao.updateStateByOid(oid,4);
     }
@@ -45,8 +45,25 @@ public class OrderService {
     public void payOrder(String oid) throws OrderException {
         int state = orderDao.findStateByOid(oid);
         if(state != 1) {
-            throw new OrderException("付款失败！");
+            throw new OrderException("付款失败！当前状态为 " + state);
         }
         orderDao.updateStateByOid(oid,2);
+    }
+
+    public List<Order> findAll() {
+        // 需要多表查询，把每个订单的 orderitem 和 book都填充满
+        return orderDao.findAll();
+    }
+
+    public List<Order> findByState(int state) {
+        return orderDao.findByState(state);
+    }
+
+    public void dispatchOrder(String oid) throws OrderException {
+        int state = orderDao.findStateByOid(oid);
+        if(state != 2) {
+            throw new OrderException("发货失败！当前状态为 " + state);
+        }
+        orderDao.updateStateByOid(oid,3);
     }
 }

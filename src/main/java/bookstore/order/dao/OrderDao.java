@@ -3,12 +3,10 @@ package bookstore.order.dao;
 import bookstore.book.domain.Book;
 import bookstore.order.domain.Order;
 import bookstore.order.domain.OrderItem;
+import bookstore.user.domain.User;
 import cn.itcast.commons.CommonUtils;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.apache.commons.dbutils.handlers.*;
 import user.util.TxQueryRunner;
 
 import java.sql.SQLException;
@@ -110,6 +108,47 @@ public class OrderDao {
         String sql = "update orders set state = ? where oid = ?";
         try {
             qr.update(sql,state,oid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Order> findAll() {
+        String sql = "select * from orders order by state,ordertime DESC";
+        try {
+            List<Order> orderList = qr.query(sql, new BeanListHandler<>(Order.class));
+
+            for(Order order: orderList) {
+                loadOrderItem(order);
+                loadOwner(order);
+            }
+            return orderList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Order> findByState(int state) {
+        String sql = "select * from orders where state = ? order by uid,ordertime DESC";
+        try {
+            List<Order> orderList = qr.query(sql, new BeanListHandler<>(Order.class),state);
+
+            for(Order order: orderList) {
+                loadOrderItem(order);
+                loadOwner(order);
+            }
+            return orderList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadOwner(Order order) {
+        String sql = "select * from orders,tb_user where orders.uid = tb_user.uid and oid = ?";
+        try {
+            Map<String, Object> map = qr.query(sql, new MapHandler(), order.getOid());
+            User owner = CommonUtils.toBean(map,User.class);
+            order.setOwner(owner);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
