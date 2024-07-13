@@ -19,4 +19,16 @@ public class BookService {
     public Book findByBid(String bid) {
         return bookDao.findByBid(bid);
     }
+
+    public void addBook(Book book) {
+        bookDao.addBook(book);
+    }
+
+    public void deleteBook(String bid) {
+        bookDao.deleteBook(bid);
+    }
+
+    public void modifyBook(Book form) {
+        bookDao.modifyBook(form);
+    }
 }

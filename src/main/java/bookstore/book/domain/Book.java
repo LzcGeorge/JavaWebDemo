@@ -9,18 +9,20 @@ public class Book {
     private String author;
     private String image;
     private Category category;
-
+    private boolean del;
     public Book() {
     }
 
-    public Book(String bid, String bname, double price, String author, String image, Category category) {
+    public Book(String bid, String bname, double price, String author, String image, Category category, boolean del) {
         this.bid = bid;
         this.bname = bname;
         this.price = price;
         this.author = author;
         this.image = image;
         this.category = category;
+        this.del = del;
     }
+
 
     @Override
     public String toString() {
@@ -32,6 +34,14 @@ public class Book {
                 ", image='" + image + '\'' +
                 ", category=" + category +
                 '}';
+    }
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
     }
 
     public String getBid() {

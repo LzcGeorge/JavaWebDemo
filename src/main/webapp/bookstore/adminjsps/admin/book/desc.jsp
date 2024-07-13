@@ -32,15 +32,25 @@
 		margin: 10px;
 	}
 </style>
+
+<script type="text/javascript">
+	function setMethod(method) {
+		var ele = document.getElementById("method");
+		ele.value = method;
+	}
+</script>
   </head>
   
   <body>
   <div>
     <img src="<c:url value='/bookstore/${bookDesc.image}'/>" border="0"/>
   </div>
-  <form style="margin:20px;" id="form" action="javascript:alert('操作成功！');" method="post">
+  <form style="margin:20px;" id="form" action="<c:url value='/admin/AdminBookServlet'/>" method="post">
+	  <input type="hidden" name="method" id="method" value=""/>
+	  <input type="hidden" name="bid" value="${bookDesc.bid}"/>
+	  <input type="hidden" name="image" value="${bookDesc.image}">
   	图书名称：<input type="text" name="bname" value="${bookDesc.bname}"/><br/>
-  	图书单价：<input type="text" name="price" value="${bookDesc.price}元"/><br/>
+  	图书单价：<input type="text" name="price" value="${bookDesc.price}"/>元<br/>
   	图书作者：<input type="text" name="author" value="${bookDesc.author}"/><br/>
   	图书分类：<select style="width: 150px; height: 20px;" name="cid">
 	  			<c:forEach items="${categoryList}" var="category">
@@ -51,8 +61,8 @@
 				</c:forEach>
 
     	</select><br/>
-  	<input type="submit" name="method" value="del" onclick="return confirm('是否真要删除该图书？');"/>
-  	<input type="submit" name="method" value="mod"/>
+  	<input type="submit" value="删除" onclick="setMethod('deleteBook')"/>
+  	<input type="submit" value="编辑" onclick="setMethod('modifyBook')"/>
   </form>
   </body>
 </html>
