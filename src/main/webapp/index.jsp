@@ -35,5 +35,8 @@
     <p>
         <a href="${pageContext.request.contextPath}/bookstore">Go to Bookstore</a>
     </p>
+    <p>
+        <a href="${pageContext.request.contextPath}/bookstore//adminjsps/admin/">Go to Bookstore Admin</a>
+    </p>
 </body>
 </html>
